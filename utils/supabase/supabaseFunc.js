@@ -1,6 +1,16 @@
 "use server"
+
 import {createClient} from "./client"
 const supabase = createClient();
+
+//指定されたIDのデータを消去する。
+export async function deleteSearch(id){
+  const { error } = await supabase
+  .from('books')
+  .delete()
+  .eq('id', id)
+
+}
 //保存した書籍データをbooksテーブルから取得する
 //ログイン機能を実装する場合selectの後にeqでIDでソートすることでログイン機能を実装する事ができる！
 export async function getSearch() {

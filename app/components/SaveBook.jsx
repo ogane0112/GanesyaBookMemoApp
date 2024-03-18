@@ -15,7 +15,7 @@ try{
   //useStateを用いて変数を更新
   setData(datas)
   console.log(datas)
-  console.log(datas[1].authors)
+
 
 }catch(error){
 
@@ -35,7 +35,7 @@ getSaveBook()
   return (
    <ul>
 
-    <SaveBookList datas = {datas}/>
+    <SaveBookList datas = {datas} setData = {setData}/>
 
    </ul>
   )

@@ -2,9 +2,20 @@
 import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
+import { deleteSearch ,getSearch} from '@/utils/supabase/supabaseFunc';
+
+async function deleteBook(data,setData){
+
+    await deleteSearch(data)
+    data = await getSearch()
+    setData(data)
+    console.log("DBからデータが削除されました")
+}
 
 function SaveBookList(props) {
-    const {datas} = props
+  const {datas,setData} = props
+
+ 
 
   return (
     <>
@@ -23,12 +34,13 @@ function SaveBookList(props) {
 
                   <li>著者</li>
                     {
-                        data.authors
+                      data.authors
                     }
-                  <li><Link 
-                  href = {`/memo/${data.id}`}
+                  <li>
+                    <Link href = {`/memo/${data.id}`}>MEMO</Link>
+                  </li>
+                  <button onClick={() => deleteBook(data.id,setData)}>DELETE</button>
                   
-                  >MEMO</Link></li>
                  
              </div>
             ))}
