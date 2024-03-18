@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 
 
 const RichTextEditor = () => {
+ //リッチテキストごとにスタイルを設定するための変数の宣言
   const [textEditors, setTextEditors] = useState([
     {
       id: 1,
@@ -20,7 +21,10 @@ const RichTextEditor = () => {
     }
   ]);
 
+  //userefをつかってテキストの入力状態を検知
   const textareaRefs = useRef([]);
+
+  //DBにない場合の表示
 
   const handleChange = (event, id) => {
     const updatedEditors = textEditors.map((editor) => {

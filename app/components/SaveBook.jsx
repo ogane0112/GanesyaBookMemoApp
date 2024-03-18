@@ -1,10 +1,28 @@
 "use client"
+
 import React from 'react'
 import {getSearch} from "@/utils/supabase/supabaseFunc"
 import {useState,useEffect} from "react"
 import SaveBookList from "@/app/components/SaveBookList"
+
+
+
 function SaveBook() {
 const [datas,setData] = useState([]);
+
+const [display,setDisplay] = useState(false);
+
+//データがない場合に表示させる物を判定するための関数
+const countData = (data) => {
+
+  if (data.length > 0){
+    setDisplay(true);
+  }else{
+    setDisplay(false);
+  }
+
+}
+
 
 //初回読み込み時にDBからデータを取得
 useEffect(()=>{
@@ -15,6 +33,8 @@ try{
   //useStateを用いて変数を更新
   setData(datas)
   console.log(datas)
+  //表示を決定する関数を呼び出す
+  countData(datas)
 
 
 }catch(error){
@@ -35,7 +55,7 @@ getSaveBook()
   return (
    <ul>
 
-    <SaveBookList datas = {datas} setData = {setData}/>
+    <SaveBookList datas = {datas} setData = {setData} display={display}  />
 
    </ul>
   )
