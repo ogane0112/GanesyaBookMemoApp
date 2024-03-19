@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import {getSearch} from "@/utils/supabase/supabaseFunc"
+import {getSearch,getSession} from "@/utils/supabase/supabaseFunc"
 import {useState,useEffect} from "react"
 import SaveBookList from "@/app/components/SaveBookList"
 
@@ -28,13 +28,19 @@ const countData = (data) => {
 useEffect(()=>{
 const getSaveBook = async() =>{
 try{
+  //sesiionを取得する!
+  const session  = await getSession()
+  console.log(session)
+  
   //DBからデータを取得
   const datas = await getSearch();
+
   //useStateを用いて変数を更新
-  setData(datas)
-  console.log(datas)
+  setData(datas);
+  console.log(datas);
+
   //表示を決定する関数を呼び出す
-  countData(datas)
+  countData(datas);
 
 
 }catch(error){

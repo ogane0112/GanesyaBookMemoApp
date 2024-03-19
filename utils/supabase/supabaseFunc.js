@@ -3,6 +3,31 @@
 import {createClient} from "./client"
 const supabase = createClient();
 
+ //cookieの情報を取得
+ 
+ 
+
+//現在ログインしているsession情報を取得する
+export async function getSession(){
+  // const refreshToken = supabase.auth.getCookie('sb:token')
+  // const accessToken = supabase.auth.getCookie('sb:token')
+
+  // if (refreshToken && accessToken) {
+  //   await supabase.auth.setSession({
+  //     refresh_token: refreshToken,
+  //     access_token: accessToken,
+  //   })
+  // } else {
+  //   // make sure you handle this case!
+  //   throw new Error('User is not authenticated.')
+  // }
+  
+  // // returns user information
+  const  user =  await supabase.auth.getUser()
+  
+  return user
+}
+
 //指定されたIDのデータを消去する。
 export async function deleteSearch(id){
   const { error } = await supabase

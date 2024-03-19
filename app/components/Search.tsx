@@ -1,6 +1,6 @@
 "use client"
-import { useState } from "react";
-import { saveSearch } from "@/utils/supabase/supabaseFunc"
+import { useState,useEffect } from "react";
+import { saveSearch ,getSession} from "@/utils/supabase/supabaseFunc"
 import Modal from "@/app/components/Modal"
 interface Book {
   id: string;
@@ -18,6 +18,7 @@ const BookSearch = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState<Book | null>(null);
+ 
 
   const toggleModal = () => {
     setIsOpen(!isOpen)
@@ -37,6 +38,24 @@ const BookSearch = () => {
     await saveSearch(props.book, props.query)
     toggleModal();
   }
+ 
+  const getNowSession = async()=>{
+    const session:any  = await getSession()
+    return session;
+  }
+
+  useEffect(()=>{
+  //sesiionを取得する!
+  
+  const fetchSession = async () => {
+    const session = await getNowSession();
+    console.log(session);
+  };
+
+  fetchSession();
+
+  },[]
+  )
 
   return (
     <div>

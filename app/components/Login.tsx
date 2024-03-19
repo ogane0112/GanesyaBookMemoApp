@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 const supabase = createClientComponentClient();
 
 const handleSocialLogin = async (prov: any) => {
-//   const router = useRouter()
+//const router = useRouter()
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: prov,
     options: {

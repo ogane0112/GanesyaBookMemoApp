@@ -3,19 +3,23 @@ import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
 import { deleteSearch ,getSearch} from '@/utils/supabase/supabaseFunc';
-import {useState} from "react"
+
 
 async function deleteBook(data,setData,allDatas,display,setDisplay){
-
+//bookstableから削除する処理
     await deleteSearch(data)
+
+//memotalbleから削除する処理
+//  await deleteMemo(data)
+
     data = await getSearch()
+
     setData(data)
-    //〇以下の時反転させる
+
+    //〇以下の時反転させて再レンダリングさせる
     if (allDatas.length <= 1){
         setDisplay(!display)
     }
-    
-
     console.log("DBからデータが削除されました")
 }
 
@@ -46,7 +50,7 @@ function SaveBookList(props) {
                         height={192}
                         className='w-24 h-auto'
                         alt ="nothing"
-                        priority
+                        priority={false}
                         ></Image></li>
                         <li className='font-medium'>{data.title}</li>
       
