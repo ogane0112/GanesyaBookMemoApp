@@ -24,7 +24,7 @@ const Header = () => {
             MEMO
           </Link>
           <Link
-            href="/login"
+            href="/Login"
             className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           >
             LOGIN

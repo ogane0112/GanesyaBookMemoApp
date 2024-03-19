@@ -5,17 +5,23 @@ import Image from "next/image"
 import { deleteSearch ,getSearch} from '@/utils/supabase/supabaseFunc';
 import {useState} from "react"
 
-async function deleteBook(data,setData){
+async function deleteBook(data,setData,allDatas,display,setDisplay){
 
     await deleteSearch(data)
     data = await getSearch()
     setData(data)
+    //〇以下の時反転させる
+    if (allDatas.length <= 1){
+        setDisplay(!display)
+    }
+    
+
     console.log("DBからデータが削除されました")
 }
 
 function SaveBookList(props) {
 //propsからもらってこればよいか
-  const {datas,setData,display} = props;
+  const {datas,setData,display,setDisplay} = props;
 
   
 
@@ -51,7 +57,7 @@ function SaveBookList(props) {
                         <li>
                           <Link href = {`/memo/${data.id}`}>MEMO</Link>
                         </li>
-                        <button onClick={() => deleteBook(data.id,setData)}>DELETE</button>
+                        <button onClick={() => deleteBook(data.id,setData,datas,display,setDisplay)}>DELETE</button>
                         
                        
                    </div>

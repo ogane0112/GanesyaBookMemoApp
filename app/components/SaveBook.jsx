@@ -16,9 +16,9 @@ const [display,setDisplay] = useState(false);
 const countData = (data) => {
 
   if (data.length > 0){
-    setDisplay(true);
-  }else{
     setDisplay(false);
+  }else{
+    setDisplay(true);
   }
 
 }
@@ -55,7 +55,7 @@ getSaveBook()
   return (
    <ul>
 
-    <SaveBookList datas = {datas} setData = {setData} display={display}  />
+    <SaveBookList datas = {datas} setData = {setData} display={display} setDisplay={setDisplay} />
 
    </ul>
   )
