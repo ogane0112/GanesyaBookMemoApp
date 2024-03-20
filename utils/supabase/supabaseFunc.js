@@ -6,7 +6,7 @@ const supabase = createClient();
  //cookieの情報を取得
  
  
-
+//必要な変数を宣言する！
 //現在ログインしているsession情報を取得する
 export async function getSession(){
   // const refreshToken = supabase.auth.getCookie('sb:token')
